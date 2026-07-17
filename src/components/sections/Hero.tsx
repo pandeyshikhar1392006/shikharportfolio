@@ -31,7 +31,7 @@ export default function Hero() {
       {/* Full-bleed landscape intro video */}
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover object-[50%_20%] md:object-center"
+        className="absolute inset-0 h-full w-full object-contain md:object-cover object-center"
         src={introVideo.src}
         preload="auto"
         autoPlay
