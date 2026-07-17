@@ -7,6 +7,7 @@ import Lightbox from "@/components/Lightbox";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const previewVideoRef = useRef<HTMLVideoElement>(null);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -14,6 +15,13 @@ export default function Hero() {
     if (!v) return;
     v.play().catch(() => {});
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const preview = previewVideoRef.current;
+    if (!preview) return;
+    preview.play().catch(() => {});
+  }, [open]);
 
   return (
     <section
@@ -23,8 +31,7 @@ export default function Hero() {
       {/* Full-bleed landscape intro video */}
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ objectPosition: "center top" }}
+        className="absolute inset-0 h-full w-full object-cover object-[50%_20%] md:object-center"
         src={introVideo.src}
         preload="auto"
         autoPlay
@@ -122,9 +129,11 @@ export default function Hero() {
 
       <Lightbox open={open} onClose={() => setOpen(false)}>
         <video
+          ref={previewVideoRef}
           src={introVideo.src}
           poster={introVideo.poster}
           controls
+          muted
           autoPlay
           playsInline
           className="max-h-[85vh] w-full rounded-2xl border-4 border-cream/20"

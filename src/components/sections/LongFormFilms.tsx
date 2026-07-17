@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { longFormVideos, VideoProject } from "@/data/content";
 import Lightbox from "@/components/Lightbox";
@@ -8,6 +8,12 @@ import Lightbox from "@/components/Lightbox";
 function FilmCard({ project, index }: { project: VideoProject; index: number }) {
   const [open, setOpen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const previewVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    previewVideoRef.current?.play().catch(() => {});
+  }, [open]);
 
   return (
     <>
@@ -65,9 +71,11 @@ function FilmCard({ project, index }: { project: VideoProject; index: number }) 
 
       <Lightbox open={open} onClose={() => setOpen(false)}>
         <video
+          ref={previewVideoRef}
           src={project.src}
           poster={project.poster}
           controls
+          muted
           autoPlay
           playsInline
           className="max-h-[85vh] w-full rounded-2xl border-4 border-cream/20"
