@@ -54,45 +54,47 @@ export default function Hero() {
 
       {/* Top bar */}
       <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 md:px-12 py-6">
-        <span className="font-display font-extrabold text-cream text-lg tracking-tight">
+        <span className="font-display font-extrabold text-cream text-lg tracking-tight whitespace-nowrap min-w-max flex-shrink-0">
           SHIKHAR PANDEY
         </span>
       </div>
 
       {/* Center content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 py-6 text-center md:px-6 md:py-10 max-w-[min(90vw,680px)] mx-auto">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="font-utility uppercase tracking-[0.3em] text-sky text-[10px] md:text-sm mb-3 leading-tight"
-        >
-          Creative Video Editor &middot; Designer
-        </motion.p>
+      <div className="relative z-10 flex h-full flex-col items-center justify-center gap-10 px-4 py-10 text-center md:px-6 md:py-16 max-w-[min(90vw,680px)] mx-auto transform -translate-y-6">
+        <div className="pt-6">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="font-utility uppercase tracking-[0.3em] text-sky text-[10px] md:text-sm mb-3 leading-tight"
+          >
+            Creative Video Editor &middot; Designer
+          </motion.p>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.35 }}
-          className="font-display font-black uppercase text-cream leading-[0.95] text-[clamp(2rem,8vw,3.5rem)] md:text-[clamp(2.2rem,8vw,6rem)]"
-        >
-          {profile.name}
-        </motion.h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="font-display font-black uppercase text-cream leading-[0.95] text-[clamp(2rem,8vw,3.5rem)] md:text-[clamp(2.2rem,8vw,6rem)]"
+          >
+            {profile.name}
+          </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.55 }}
-          className="mt-3 max-w-full text-cream/85 text-sm md:max-w-xl md:text-base"
-        >
-          {profile.tagline}
-        </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.55 }}
+            className="mt-3 max-w-full text-cream/85 text-sm md:max-w-xl md:text-base"
+          >
+            {profile.tagline}
+          </motion.p>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.7 }}
-          className="mt-6 flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap"
+          className="mt-8 grid w-full grid-cols-2 gap-3 sm:grid-cols-4"
         >
           <motion.button
             type="button"
@@ -100,26 +102,26 @@ export default function Hero() {
             whileHover={{ y: -3, scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="rounded-full bg-cream text-navy px-6 py-3 font-utility text-sm font-medium hover:bg-cream/90 transition-colors"
+            className="w-full rounded-full bg-cream px-4 py-2 text-[0.78rem] font-utility font-medium text-navy hover:bg-cream/90 transition-colors"
           >
-            Watch full intro
+            Watch intro
           </motion.button>
           <a
             href={profile.resumeFile}
             download
-            className="rounded-full bg-royal px-6 py-3 font-utility text-sm font-medium text-cream hover:bg-royal-deep transition-colors"
+            className="w-full rounded-full bg-royal px-4 py-2 text-[0.78rem] font-utility font-medium text-cream hover:bg-royal-deep transition-colors"
           >
-            Download Resume
+            Resume
           </a>
           <a
             href="#work"
-            className="rounded-full border border-cream/40 px-6 py-3 font-utility text-sm font-medium text-cream hover:bg-cream/10 transition-colors"
+            className="w-full rounded-full border border-cream/40 bg-transparent px-4 py-2 text-[0.78rem] font-utility font-medium text-cream hover:bg-cream/10 transition-colors"
           >
             View Work
           </a>
           <a
             href="#contact"
-            className="rounded-full border border-cream/40 px-6 py-3 font-utility text-sm font-medium text-cream hover:bg-cream/10 transition-colors"
+            className="w-full rounded-full border border-cream/40 bg-transparent px-4 py-2 text-[0.78rem] font-utility font-medium text-cream hover:bg-cream/10 transition-colors"
           >
             Contact
           </a>
