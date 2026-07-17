@@ -28,23 +28,16 @@ function ReelCard({ project, index }: { project: VideoProject; index: number }) 
       >
         <button
           onClick={() => setOpen(true)}
-          onMouseEnter={() => videoRef.current?.play().catch(() => {})}
-          onMouseLeave={() => {
-            if (videoRef.current) {
-              videoRef.current.pause();
-              videoRef.current.currentTime = 0;
-            }
-          }}
           className="relative block w-full aspect-[9/16] rounded-[1.75rem] border-[6px] border-navy bg-navy overflow-hidden shadow-lg shadow-navy/10 transition-transform duration-300 group-hover:-translate-y-2"
         >
           <video
-            ref={videoRef}
             src={project.src}
             poster={project.poster}
             muted
             loop
             playsInline
-            preload="metadata"
+            autoPlay
+            preload="auto"
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-x-0 top-0 flex justify-center pt-1.5">

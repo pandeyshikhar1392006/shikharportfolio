@@ -19,13 +19,6 @@ function FilmCard({ project, index }: { project: VideoProject; index: number }) 
     <>
       <motion.button
         onClick={() => setOpen(true)}
-        onMouseEnter={() => videoRef.current?.play().catch(() => {})}
-        onMouseLeave={() => {
-          if (videoRef.current) {
-            videoRef.current.pause();
-            videoRef.current.currentTime = 0;
-          }
-        }}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         whileHover={{ y: -5, scale: 1.01 }}
@@ -36,13 +29,13 @@ function FilmCard({ project, index }: { project: VideoProject; index: number }) 
       >
         <div className="relative aspect-video overflow-hidden rounded-2xl bg-navy">
           <video
-            ref={videoRef}
             src={project.src}
             poster={project.poster}
             muted
             loop
             playsInline
-            preload="metadata"
+            autoPlay
+            preload="auto"
             className="h-full w-full object-contain bg-navy transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-navy/25 group-hover:bg-navy/40 transition-colors" />

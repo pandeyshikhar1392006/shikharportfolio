@@ -26,12 +26,13 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative h-[100svh] w-full overflow-hidden bg-navy"
+      className="relative min-h-[75svh] w-full overflow-hidden bg-navy md:h-[100svh]"
     >
       {/* Full-bleed landscape intro video */}
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-contain md:object-cover object-center"
+        className="absolute inset-0 h-full w-full object-contain md:object-cover"
+        style={{ objectPosition: "center center" }}
         src={introVideo.src}
         preload="auto"
         autoPlay
