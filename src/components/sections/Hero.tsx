@@ -26,40 +26,46 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full overflow-hidden bg-navy"
+      className="relative h-screen w-full overflow-hidden bg-navy"
     >
       {/* Full-bleed landscape intro video */}
-      <video
-        ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ objectPosition: "center center" }}
-        src={introVideo.src}
-        preload="auto"
-        autoPlay
-        muted
-        loop
-        playsInline
-      />
+      <div className="absolute inset-0 flex items-center justify-center bg-navy">
+        <div
+          className="relative flex h-full w-full items-center justify-center bg-center bg-cover bg-no-repeat"
+          style={{ backgroundImage: "url('/hemlo.png')" }}
+        >
+          <video
+            ref={videoRef}
+            className="max-h-full max-w-full object-contain"
+            style={{ objectPosition: "center center" }}
+            src={introVideo.src}
+            preload="auto"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        </div>
+      </div>
 
       {/* readability wash */}
       <div className="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/25 to-navy/80" />
       <div className="absolute inset-0 bg-gradient-to-t from-cream/0 via-transparent to-transparent" />
 
       {/* Top bar */}
-      <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-4 py-5 md:px-8 md:py-6">
-        <span className="font-display font-extrabold text-cream text-base tracking-tight md:text-lg">
+      <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 md:px-12 py-6">
+        <span className="font-display font-extrabold text-cream text-lg tracking-tight">
           SHIKHAR PANDEY
         </span>
       </div>
 
       {/* Center content */}
-      <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 py-8 text-center md:px-6 md:py-10">
-        <div className="w-full max-w-[min(92vw,720px)]">
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 py-6 text-center md:px-6 md:py-10 max-w-[min(90vw,680px)] mx-auto">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="font-utility uppercase tracking-[0.3em] text-sky text-[10px] md:text-sm mb-4 leading-tight"
+          className="font-utility uppercase tracking-[0.3em] text-sky text-[10px] md:text-sm mb-3 leading-tight"
         >
           Creative Video Editor &middot; Designer
         </motion.p>
@@ -68,7 +74,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.35 }}
-          className="font-display font-black uppercase text-cream leading-[0.95] text-[clamp(2rem,8vw,4rem)] md:text-[clamp(2.2rem,8vw,6rem)]"
+          className="font-display font-black uppercase text-cream leading-[0.95] text-[clamp(2rem,8vw,3.5rem)] md:text-[clamp(2.2rem,8vw,6rem)]"
         >
           {profile.name}
         </motion.h1>
@@ -77,7 +83,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.55 }}
-          className="mt-4 max-w-full text-cream/85 text-sm md:max-w-xl md:text-base"
+          className="mt-3 max-w-full text-cream/85 text-sm md:max-w-xl md:text-base"
         >
           {profile.tagline}
         </motion.p>
@@ -86,7 +92,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.7 }}
-          className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap"
+          className="mt-6 flex w-full flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap"
         >
           <motion.button
             type="button"
@@ -118,7 +124,6 @@ export default function Hero() {
             Contact
           </a>
         </motion.div>
-      </div>
       </div>
 
       {/* Scroll cue */}
