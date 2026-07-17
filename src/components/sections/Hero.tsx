@@ -26,13 +26,13 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] w-full overflow-hidden bg-navy"
+      className="relative h-screen w-full overflow-hidden bg-navy"
     >
       {/* Full-bleed landscape intro video */}
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ objectPosition: "center top" }}
+        className="absolute inset-0 h-full w-full object-contain"
+        style={{ objectPosition: "center center" }}
         src={introVideo.src}
         preload="auto"
         autoPlay
@@ -53,7 +53,7 @@ export default function Hero() {
       </div>
 
       {/* Center content */}
-      <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-6 py-10 text-center">
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 py-10 text-center">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
