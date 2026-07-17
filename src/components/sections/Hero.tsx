@@ -26,13 +26,13 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[75svh] w-full overflow-hidden bg-navy md:h-[100svh]"
+      className="relative min-h-[100svh] w-full overflow-hidden bg-navy"
     >
       {/* Full-bleed landscape intro video */}
       <video
         ref={videoRef}
-        className="absolute inset-0 h-full w-full object-contain md:object-cover"
-        style={{ objectPosition: "center center" }}
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ objectPosition: "center top" }}
         src={introVideo.src}
         preload="auto"
         autoPlay
@@ -53,12 +53,12 @@ export default function Hero() {
       </div>
 
       {/* Center content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+      <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-6 py-10 text-center">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="font-utility uppercase tracking-[0.3em] text-sky text-xs md:text-sm mb-5"
+          className="font-utility uppercase tracking-[0.3em] text-sky text-[10px] md:text-sm mb-4"
         >
           Creative Video Editor &middot; Designer
         </motion.p>
@@ -67,7 +67,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.35 }}
-          className="font-display font-black uppercase text-cream leading-[0.9] text-[clamp(2.6rem,10vw,8rem)]"
+          className="font-display font-black uppercase text-cream leading-[0.95] text-[clamp(2rem,7vw,5rem)] md:text-[clamp(2.6rem,10vw,8rem)]"
         >
           {profile.name}
         </motion.h1>
@@ -76,7 +76,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.55 }}
-          className="mt-6 max-w-xl text-cream/85 text-base md:text-lg"
+          className="mt-4 max-w-md text-cream/85 text-sm md:max-w-xl md:text-lg"
         >
           {profile.tagline}
         </motion.p>

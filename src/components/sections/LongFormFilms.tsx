@@ -39,13 +39,6 @@ function FilmCard({ project, index }: { project: VideoProject; index: number }) 
             className="h-full w-full object-contain bg-navy transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-navy/25 group-hover:bg-navy/40 transition-colors" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-cream/90 transition-transform duration-300 group-hover:scale-110">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M8 5v14l11-7z" fill="var(--navy)" />
-              </svg>
-            </div>
-          </div>
           <span className="absolute top-4 left-4 font-utility text-[10px] uppercase tracking-widest text-cream bg-royal/90 rounded-full px-3 py-1">
             Long Form
           </span>
