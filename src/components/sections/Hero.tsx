@@ -7,7 +7,6 @@ import Lightbox from "@/components/Lightbox";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [muted, setMuted] = useState(true);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -15,13 +14,6 @@ export default function Hero() {
     if (!v) return;
     v.play().catch(() => {});
   }, []);
-
-  const toggleMute = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.muted = !v.muted;
-    setMuted(v.muted);
-  };
 
   return (
     <section
@@ -32,10 +24,11 @@ export default function Hero() {
       <video
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"
+        style={{ objectPosition: "center top" }}
         src={introVideo.src}
-        poster={introVideo.poster}
+        preload="auto"
         autoPlay
-        muted={muted}
+        muted
         loop
         playsInline
       />
@@ -49,12 +42,6 @@ export default function Hero() {
         <span className="font-display font-extrabold text-cream text-lg tracking-tight">
           SHIKHAR PANDEY
         </span>
-        <button
-          onClick={toggleMute}
-          className="font-utility text-xs uppercase tracking-widest text-cream/80 border border-cream/30 rounded-full px-4 py-2 hover:bg-cream/10 transition-colors"
-        >
-          {muted ? "Unmute" : "Mute"}
-        </button>
       </div>
 
       {/* Center content */}
