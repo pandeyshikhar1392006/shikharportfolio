@@ -64,4 +64,4 @@ The project deploys cleanly to Vercel:
 3. Framework preset: Next.js (auto-detected). No environment variables are required.
 4. Deploy.
 
-If your Git host rejects the repo for size (video assets), either use Git LFS for the `public/videos` folder or move the videos to external storage and update the `src` values in `src/data/content.ts` to point at the hosted URLs.
+If your Git host rejects the repo for size (video assets), either use Git LFS for the `public/videos` folder or move the videos to external storage and update the `src` values in `src/data/content.ts` to point at the hosted URLs..
