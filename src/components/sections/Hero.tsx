@@ -142,7 +142,8 @@ export default function Hero() {
           src={introVideo.src}
           poster={introVideo.poster}
           controls
-          muted
+          muted={false}
+          volume={1}
           autoPlay
           playsInline
           className="max-h-[85vh] w-full rounded-2xl border-4 border-cream/20"

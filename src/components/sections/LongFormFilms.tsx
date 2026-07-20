@@ -80,7 +80,8 @@ function FilmCard({ project, index }: { project: VideoProject; index: number }) 
           src={project.src}
           poster={project.poster}
           controls
-          muted
+          muted={false}
+          volume={1}
           autoPlay
           playsInline
           className="max-h-[85vh] w-full rounded-2xl border-4 border-cream/20"

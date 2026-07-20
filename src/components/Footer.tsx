@@ -63,7 +63,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 rounded-2xl border border-cream/10 bg-cream/5 px-5 py-3 text-sm text-cream transition-all duration-300 hover:-translate-y-1 hover:bg-cream/10"
             >
-              <span className="relative h-5 w-5">
+              <span className="relative h-8 w-8">
                 <Image
                   src="/logos/vecteezy_instagram-logo-png-instagram-icon-transparent_18930415.png"
                   alt="Instagram"
@@ -79,7 +79,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 rounded-2xl border border-cream/10 bg-cream/5 px-5 py-3 text-sm text-cream transition-all duration-300 hover:-translate-y-1 hover:bg-cream/10"
             >
-              <span className="relative h-5 w-5">
+              <span className="relative h-8 w-8">
                 <Image
                   src="/logos/vecteezy_linkedin-logo-png-linkedin-icon-transparent-png_18930587.png"
                   alt="LinkedIn"

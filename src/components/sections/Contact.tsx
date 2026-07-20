@@ -117,7 +117,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 font-utility text-sm hover:bg-ink/5 transition-colors"
               >
-                <span className="relative h-5 w-5">
+                <span className="relative h-8 w-8">
                   <Image
                     src="/logos/vecteezy_instagram-logo-png-instagram-icon-transparent_18930415.png"
                     alt="Instagram"
@@ -133,7 +133,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 font-utility text-sm hover:bg-ink/5 transition-colors"
               >
-                <span className="relative h-5 w-5">
+                <span className="relative h-8 w-8">
                   <Image
                     src="/logos/vecteezy_linkedin-logo-png-linkedin-icon-transparent-png_18930587.png"
                     alt="LinkedIn"

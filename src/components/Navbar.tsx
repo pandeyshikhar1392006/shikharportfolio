@@ -29,17 +29,17 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between h-16">
+      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-12">
         <a
           href="#home"
-          className={`font-display font-extrabold tracking-tight transition-colors ${
+          className={`flex-shrink-0 font-display font-extrabold tracking-tight transition-colors ${
             scrolled ? "text-ink" : "text-transparent"
           }`}
         >
           SP
         </a>
 
-        <div className="hidden md:flex gap-8 font-utility text-sm">
+        <div className="hidden md:flex items-center gap-8 ml-auto font-utility text-sm">
           {links.map((l) => (
             <a
               key={l.href}
