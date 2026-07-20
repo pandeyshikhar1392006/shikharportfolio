@@ -7,11 +7,11 @@ import { profile } from "@/data/content";
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-navy text-cream pt-16 pb-20">
-      <div className="pointer-events-none absolute left-[-6rem] top-0 h-72 w-72 rounded-full bg-royal/10 blur-3xl" />
-      <div className="pointer-events-none absolute right-[-5rem] bottom-0 h-64 w-64 rounded-full bg-sky/10 blur-3xl" />
+      <div className="pointer-events-none absolute left-0 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-royal/10 blur-3xl" />
+      <div className="pointer-events-none absolute right-0 bottom-0 h-64 w-64 translate-x-1/2 translate-y-1/2 rounded-full bg-sky/10 blur-3xl" />
 
       <div className="relative z-10">
-        <div className="mx-auto max-w-6xl px-6 md:px-12 mt-16 grid gap-10 md:grid-cols-3 items-start">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 xl:px-12 mt-16 grid gap-10 md:grid-cols-3 items-start">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

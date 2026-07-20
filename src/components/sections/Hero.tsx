@@ -4,11 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { profile, introVideo } from "@/data/content";
 import Lightbox from "@/components/Lightbox";
+import { useWorkAudio } from "@/components/WorkAudioProvider";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const previewVideoRef = useRef<HTMLVideoElement>(null);
   const [open, setOpen] = useState(false);
+  const { backgroundEnabled, toggleBackgroundAudio } = useWorkAudio();
 
   useEffect(() => {
     const v = videoRef.current;
@@ -28,33 +30,29 @@ export default function Hero() {
       id="home"
       className="relative h-screen w-full overflow-hidden bg-navy"
     >
-      {/* Full-bleed landscape intro video */}
-      <div className="absolute inset-0 flex items-center justify-center bg-navy">
-        <div
-          className="relative flex h-full w-full items-center justify-center bg-center bg-cover bg-no-repeat"
-          style={{ backgroundImage: "url('/hemlo.png')" }}
-        >
-          <video
-            ref={videoRef}
-            className="max-h-full max-w-full object-contain"
-            style={{ objectPosition: "center center" }}
-            src={introVideo.src}
-            preload="auto"
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-        </div>
-      </div>
+      {/* hero background image */}
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/hemlo.png')" }} />
 
-      {/* readability wash */}
+      {/* Full-bleed landscape intro video */}
+      <div className="absolute inset-0 flex items-center justify-center bg-transparent">
+        <video
+          ref={videoRef}
+          className="relative z-0 h-full w-full object-contain"
+          style={{ objectPosition: "center center" }}
+          src={introVideo.src}
+          preload="metadata"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+      </div>
       <div className="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/25 to-navy/80" />
       <div className="absolute inset-0 bg-gradient-to-t from-cream/0 via-transparent to-transparent" />
 
       {/* Top bar */}
       <div className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 md:px-12 py-6">
-        <span className="font-display font-extrabold text-cream text-lg tracking-tight whitespace-nowrap min-w-max flex-shrink-0">
+        <span className="font-display font-extrabold text-cream text-[1.1rem] sm:text-[1.2rem] md:text-[1.35rem] lg:text-[1.5rem] tracking-[0.02em] whitespace-nowrap leading-none flex-shrink-0 overflow-hidden text-ellipsis block max-w-full">
           SHIKHAR PANDEY
         </span>
       </div>
@@ -75,7 +73,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="font-display font-black uppercase text-cream leading-[0.95] text-[clamp(2rem,8vw,3.5rem)] md:text-[clamp(2.2rem,8vw,6rem)]"
+            className="font-display font-black uppercase text-cream leading-[0.95] whitespace-nowrap text-[clamp(2rem,8vw,3.5rem)] md:text-[clamp(2.2rem,8vw,6rem)]"
           >
             {profile.name}
           </motion.h1>
@@ -84,7 +82,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.55 }}
-            className="mt-3 max-w-full text-cream/85 text-sm md:max-w-xl md:text-base"
+            className="mx-auto mt-3 w-full max-w-xl text-center text-cream/85 text-sm md:text-base"
           >
             {profile.tagline}
           </motion.p>
@@ -113,12 +111,13 @@ export default function Hero() {
           >
             Resume
           </a>
-          <a
-            href="#work"
+          <button
+            type="button"
+            onClick={toggleBackgroundAudio}
             className="w-full rounded-full border border-cream/40 bg-transparent px-4 py-2 text-[0.78rem] font-utility font-medium text-cream hover:bg-cream/10 transition-colors"
           >
-            View Work
-          </a>
+            {backgroundEnabled ? "Pause Music" : "Play Music"}
+          </button>
           <a
             href="#contact"
             className="w-full rounded-full border border-cream/40 bg-transparent px-4 py-2 text-[0.78rem] font-utility font-medium text-cream hover:bg-cream/10 transition-colors"

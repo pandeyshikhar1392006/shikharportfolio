@@ -28,6 +28,7 @@ export function WorkAudioProvider({
   const [workOpen, setWorkOpen] = useState(false);
   const [backgroundEnabled, setBackgroundEnabled] = useState(false);
   const [userInteracted, setUserInteracted] = useState(false);
+  const [audioSrcReady, setAudioSrcReady] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -41,6 +42,8 @@ export function WorkAudioProvider({
 
     if (!userInteracted) return;
 
+    audio.loop = true;
+    audio.currentTime = 0;
     audio
       .play()
       .catch(() => {
@@ -51,10 +54,38 @@ export function WorkAudioProvider({
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
+
     audio.loop = true;
     audio.preload = "auto";
     audio.volume = 0.18;
     audio.muted = false;
+
+    const startPlayback = () => {
+      setAudioSrcReady(true);
+      setBackgroundEnabled(true);
+      setUserInteracted(true);
+      audio.src = "/audio/background.mp3";
+      audio.load();
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+    };
+
+    startPlayback();
+  }, []);
+
+  useEffect(() => {
+    const onInteract = () => {
+      setAudioSrcReady(true);
+      setUserInteracted(true);
+    };
+
+    window.addEventListener("pointerdown", onInteract, { once: true });
+    window.addEventListener("keydown", onInteract, { once: true });
+
+    return () => {
+      window.removeEventListener("pointerdown", onInteract);
+      window.removeEventListener("keydown", onInteract);
+    };
   }, []);
 
   useEffect(() => {
@@ -74,7 +105,24 @@ export function WorkAudioProvider({
   }, [workOpen]);
 
   const toggleBackgroundAudio = () => {
-    setBackgroundEnabled((current) => !current);
+    setUserInteracted(true);
+    setBackgroundEnabled((current) => {
+      const next = !current;
+      const audio = audioRef.current;
+
+      if (!audio) return next;
+
+      if (next) {
+        audio.src = "/audio/background.mp3";
+        audio.load();
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+      } else {
+        audio.pause();
+      }
+
+      return next;
+    });
   };
 
   const value = useMemo(
@@ -84,29 +132,8 @@ export function WorkAudioProvider({
 
   return (
     <WorkAudioContext.Provider value={value}>
-      <audio ref={audioRef} src="/audio/background.mp3" />
+      <audio ref={audioRef} src={audioSrcReady ? "/audio/background.mp3" : undefined} />
       {children}
-      <div className="fixed right-4 top-1/2 z-50 hidden -translate-y-1/2 flex-col gap-3 md:flex">
-        <button
-          type="button"
-          onClick={toggleBackgroundAudio}
-          aria-label={backgroundEnabled ? "Pause background music" : "Play background music"}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/30 bg-navy/90 text-cream shadow-[0_10px_30px_rgba(0,0,0,0.2)] transition-transform duration-200 hover:-translate-y-1"
-        >
-          {backgroundEnabled ? (
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
-              <path d="M5 9v6h4l5 5V4L9 9H5z" />
-              <path d="M16.5 12c0-1.77-.77-3.37-2-4.47v8.94c1.23-1.1 2-2.7 2-4.47z" />
-            </svg>
-          ) : (
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
-              <path d="M16.5 12c0-1.77-.77-3.37-2-4.47v8.94c1.23-1.1 2-2.7 2-4.47z" opacity="0.3" />
-              <path d="M5 9v6h4l5 5V4L9 9H5z" />
-              <path d="M19 4.27L17.73 3 2 18.73 3.27 20 5 18.27V15h4l5 5v-3.73l4.73 4.73 1.27-1.27L19 4.27z" />
-            </svg>
-          )}
-        </button>
-      </div>
     </WorkAudioContext.Provider>
   );
 }

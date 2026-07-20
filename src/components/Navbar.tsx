@@ -29,7 +29,7 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-6xl px-6 md:px-12 flex items-center justify-between h-16">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between h-16">
         <a
           href="#home"
           className={`font-display font-extrabold tracking-tight transition-colors ${
@@ -67,7 +67,7 @@ export default function Navbar() {
       </div>
 
       {open && scrolled && (
-        <div className="md:hidden bg-cream border-t border-line px-6 py-4 flex flex-col gap-4 font-utility text-sm">
+        <div className="md:hidden bg-cream border-t border-line px-4 sm:px-6 py-4 flex flex-col gap-4 font-utility text-sm">
           {links.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
               {l.label}

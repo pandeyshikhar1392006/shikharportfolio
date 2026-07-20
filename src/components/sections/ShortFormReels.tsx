@@ -9,11 +9,29 @@ function ReelCard({ project, index }: { project: VideoProject; index: number }) 
   const videoRef = useRef<HTMLVideoElement>(null);
   const previewVideoRef = useRef<HTMLVideoElement>(null);
   const [open, setOpen] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
   useEffect(() => {
     if (!open) return;
     previewVideoRef.current?.play().catch(() => {});
   }, [open]);
+
+  useEffect(() => {
+    if (shouldLoadVideo || !videoRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "220px 0px" }
+    );
+
+    observer.observe(videoRef.current);
+    return () => observer.disconnect();
+  }, [shouldLoadVideo]);
 
   return (
     <>
@@ -31,13 +49,14 @@ function ReelCard({ project, index }: { project: VideoProject; index: number }) 
           className="relative block w-full aspect-[9/16] rounded-[1.75rem] border-[6px] border-navy bg-navy overflow-hidden shadow-lg shadow-navy/10 transition-transform duration-300 group-hover:-translate-y-2"
         >
           <video
-            src={project.src}
+            ref={videoRef}
+            src={shouldLoadVideo ? project.src : undefined}
             poster={project.poster}
             muted
             loop
             playsInline
-            autoPlay
-            preload="auto"
+            autoPlay={shouldLoadVideo}
+            preload="metadata"
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-x-0 top-0 flex justify-center pt-1.5">
@@ -95,15 +114,6 @@ export default function ShortFormReels() {
           ))}
         </div>
 
-        <div className="mt-6 rounded-full bg-ink/10 p-2">
-          <div className="relative h-2 overflow-hidden rounded-full bg-cream/10">
-            <motion.div
-              animate={{ x: [0, 160, 0] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-0 top-0 h-full w-24 rounded-full bg-royal"
-            />
-          </div>
-        </div>
       </div>
     </section>
   );

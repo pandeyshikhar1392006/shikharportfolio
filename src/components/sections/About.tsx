@@ -55,7 +55,7 @@ export default function About() {
             {about.philosophy}
           </p>
 
-          <div className="mt-10 grid grid-cols-3 gap-6 max-w-md">
+          <div className="mt-10 grid grid-cols-3 gap-3 sm:gap-6 max-w-md w-full">
             {about.stats.map((s) => (
               <div key={s.label}>
                 <div className="font-display font-black text-3xl md:text-4xl text-navy">
