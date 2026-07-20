@@ -13,7 +13,11 @@ function FilmCard({ project, index }: { project: VideoProject; index: number }) 
 
   useEffect(() => {
     if (!open) return;
-    previewVideoRef.current?.play().catch(() => {});
+    const preview = previewVideoRef.current;
+    if (!preview) return;
+    preview.muted = false;
+    preview.volume = 1;
+    preview.play().catch(() => {});
   }, [open]);
 
   useEffect(() => {
@@ -81,7 +85,6 @@ function FilmCard({ project, index }: { project: VideoProject; index: number }) 
           poster={project.poster}
           controls
           muted={false}
-          volume={1}
           autoPlay
           playsInline
           className="max-h-[85vh] w-full rounded-2xl border-4 border-cream/20"

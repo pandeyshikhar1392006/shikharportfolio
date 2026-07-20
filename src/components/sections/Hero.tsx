@@ -22,6 +22,8 @@ export default function Hero() {
     if (!open) return;
     const preview = previewVideoRef.current;
     if (!preview) return;
+    preview.muted = false;
+    preview.volume = 1;
     preview.play().catch(() => {});
   }, [open]);
 
@@ -143,7 +145,6 @@ export default function Hero() {
           poster={introVideo.poster}
           controls
           muted={false}
-          volume={1}
           autoPlay
           playsInline
           className="max-h-[85vh] w-full rounded-2xl border-4 border-cream/20"
